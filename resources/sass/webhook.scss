@@ -1,0 +1,50 @@
+#tblRequest {
+    width: 100%;
+    border-collapse: collapse;
+
+    // Chỉnh toàn bộ các hàng (tr) thành các hàng ngang
+    tbody tr {
+        display: grid;
+        grid-template-columns: 1fr 3fr; // 1 cột đầu rộng bằng 1 phần, cột sau rộng 3 phần
+        gap: 20px; // Khoảng cách giữa các cột
+        align-items: start; // Căn chỉnh theo chiều dọc
+        min-width: 100%;
+        th{
+            border: none!important;
+        }
+    }
+    td:first-child {
+        min-height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    td {
+        padding: 10px;
+        border: none;
+        min-width: 100%;
+    }
+    pre{
+        display: block;
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: 'Courier New', Courier, monospace;
+        white-space: pre-wrap; // Để giữ nguyên định dạng dòng  
+    }
+    code {
+        display: block;
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: 'Courier New', Courier, monospace;
+        white-space: pre-wrap; // Để giữ nguyên định dạng dòng
+    }
+}
+.api-content{
+    ol{
+        padding: 0px;
+    }
+    ul{
+        padding: 0px;
+    }
+}

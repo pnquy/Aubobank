@@ -1,0 +1,1857 @@
+@import "../global";
+@import "global";
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+@import "../components/components.scss";
+
+@import "./auth.scss";
+
+.app-layout-breadcrumbs {
+    background-color: $content-bg-color !important;
+    font-size: 1.4rem;
+
+    .breadcrumb-item {
+        a {
+            text-decoration: none;
+            color: $text-color;
+            font-size: 1.4rem;
+        }
+    }
+
+    .breadcrumb-item.active {
+        text-decoration: none;
+        color: $primary;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+}
+
+.layout {
+    min-height: 100vh;
+    opacity: 1;
+    border: none;
+    cursor: default;
+    display: flex;
+    background-color: $primary;
+    padding: 2rem 4rem;
+}
+
+.sidebar {
+    background-color: $primary;
+    width: $sidebar-width;
+    overflow-x: hidden;
+    padding: 0;
+    padding-left: 1rem;
+    padding-right: 2rem;
+    padding-bottom: 4rem;
+    color: $primary-contrast;
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    .sidebar-header {
+        height: $header-height;
+        padding: 0;
+        margin: 0;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: $white;
+
+            .sidebar-header-img {
+                width: 5rem;
+            }
+            .sidebar-header-heading {
+                font-weight: 700;
+                font-size: 2rem;
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        .sidebar-toggle-icon {
+            display: none;
+        }
+    }
+    .sidebar-devider {
+        height: 1px;
+        position: relative;
+        width: 100%;
+        z-index: 10;
+        background-color: $primary-contrast;
+    }
+
+    .sidebar-menu {
+        padding: 0;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .sidebar-menu__sub {
+        padding: 0;
+        display: none;
+    }
+
+    .sidebar-menu-item {
+        width: 100%;
+        margin: 0;
+
+        .sidebar-menu-link {
+            height: 45px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 2.4rem 0;
+            position: relative;
+            color: $primary-contrast;
+            margin: 0;
+            width: 100%;
+            text-decoration: none;
+            // :hover {
+            //     background-color: $primary-hover;
+            // }
+
+            .sidebar-menu-icon {
+                img {
+                    // filter: invert(12%) sepia(63%) saturate(6234%)
+                    //     hue-rotate(246deg) brightness(87%) contrast(156%);
+                    fill: red;
+                    stroke: blue;
+                }
+            }
+
+            .sidebar-menu-title {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-left: 2rem;
+                width: 100%;
+            }
+        }
+
+        &.active {
+            background-color: $content-bg-color;
+            height: 45px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.25rem;
+            padding-left: 1.25rem;
+            position: relative;
+
+            &::after {
+                content: "";
+                height: 100%;
+                width: 4rem;
+                position: absolute;
+                top: 0;
+                right: -2rem;
+                background-color: $content-bg-color;
+            }
+
+            .sidebar-menu-link {
+                color: black;
+                width: 100%;
+                position: relative;
+            }
+        }
+    }
+
+    // .sidebar-menu-has-sub-icon {
+    //     //
+    // }
+
+    .sidebar-deposit-scoint-btn {
+        padding: 1rem 3rem;
+        margin: 2rem 0;
+        color: $primary;
+        background-color: $primary-contrast;
+        border: none;
+        border-radius: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .sidebar-info {
+        padding: 2rem 0;
+        line-height: 3rem;
+
+        .sidebar-info-company {
+            font-weight: 600;
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+
+        .sidebar-header {
+            justify-content: space-between;
+
+            .sidebar-toggle-icon {
+                display: block;
+                font-size: 1.6rem;
+                cursor: pointer;
+            }
+        }
+
+        .sidebar-content {
+            display: none;
+        }
+    }
+}
+
+.content {
+    flex: 1 1 0%;
+    min-height: 100vh;
+    min-width: 0;
+    padding-bottom: 2.5rem;
+    background-color: $content-bg-color;
+    border-radius: 3rem;
+    padding: 0 2rem;
+    position: relative;
+}
+
+.content-header {
+    height: $header-height;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    .content-header-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .content-header-notify-wrapper {
+            position: relative;
+
+            .content-header-notify-icon {
+                font-size: 2rem;
+                margin-right: 2rem;
+                cursor: pointer;
+                position: relative;
+
+                .content-header-notify-new-notify-badge {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    content: "";
+                    width: 0.75rem;
+                    height: 0.75rem;
+                    background-color: $danger;
+                    border-radius: 50%;
+                }
+            }
+            .content-header-notify-menu {
+                display: none;
+                z-index: 5;
+                width: 400px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                transform: translateY(105%);
+                border-radius: 1rem;
+                background-color: $white;
+                color: $text-color;
+                padding: 1rem 1rem;
+
+                .content-header-notify-menu-list {
+                    list-style: none;
+                }
+                .content-header-notify-menu-item {
+                    list-style: none;
+                    font-size: 1.4rem;
+                }
+            }
+        }
+
+        .content-header-user-menu-wrapper {
+            position: relative;
+            .content-header-user-avatar {
+                width: 10rem;
+                height: 10rem;
+                border-radius: 50%;
+                object-fit: cover;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+                cursor: pointer;
+            }
+            .content-header-user-menu {
+                display: none;
+                z-index: 5;
+                width: 200px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                transform: translateY(105%);
+                border-radius: 1rem;
+                background-color: $primary;
+                color: $white;
+                padding: 1rem 1rem;
+
+                .content-header-user-menu-title {
+                    font-size: 1.4rem;
+                    font-weight: 700;
+                    margin-bottom: 1rem;
+                }
+
+                .content-header-user-menu-list {
+                    list-style: none;
+                    padding: 0;
+                    .content-header-user-menu-item {
+                        width: 100%;
+                        color: $white;
+                        cursor: pointer;
+                        .content-header-user-menu-link {
+                            width: 100%;
+                            display: block;
+                            text-decoration: none;
+                            padding-left: 1rem;
+                            line-height: 3rem;
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            color: $white;
+                            .content-header-user-menu-icon {
+                                color: $white;
+                                font-size: 1.4rem;
+                                width: 2rem;
+                            }
+                        }
+                    }
+                    .content-header-user-menu-devider {
+                        height: 1px;
+                        position: relative;
+                        width: 100%;
+                        z-index: 10;
+                        background-color: $primary-contrast;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.content-main {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    overflow-x: hidden;
+}
+
+.chat-badge {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    z-index: 9999;
+    bottom: 3rem;
+    right: 3rem;
+    border-radius: 50%;
+    background-color: $primary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    .chat-badge-icon {
+        font-size: 3rem;
+        color: $white;
+    }
+
+    .chat-screen-wrapper {
+        display: none;
+        .chat-screen {
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translateY(-105%);
+            width: 300px;
+            height: 400px;
+            background-color: $content-bg-color;
+            border-radius: 1rem;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .chat-screen-header {
+                height: 50px;
+                background-color: $primary;
+                padding: 1rem;
+                display: flex;
+                align-items: center;
+
+                .chat-screen-header-title {
+                    font-size: 1.6rem;
+                    font-weight: 700;
+                    color: $white;
+                }
+            }
+
+            .chat-screen-form {
+                height: 50px;
+                width: 100%;
+                background-color: $white;
+                padding: 1rem 1rem;
+
+                .chat-screen-input-wrapper {
+                    height: 100%;
+                    width: 100%;
+                    color: $text-color;
+                    border: 1px solid #ccc;
+                    border-radius: 2rem;
+                    padding: 0.6rem 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .chat-screen-input {
+                        flex: 1;
+                    }
+
+                    .chat-screen-send-icon {
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dashboard {
+    .dashboard-custom-alert {
+        background-color: $success;
+        color: $success-contrast;
+        padding: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        border-radius: 1rem;
+    }
+
+    .dashboard-report {
+        padding: 2rem 0;
+
+        .dashboard-report-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-report-title {
+            font-weight: 600;
+        }
+
+        .dashboard-report-reload {
+            color: rgb(22, 219, 98);
+            font-size: 1.4rem;
+            text-decoration: none;
+        }
+
+        .dashboard-report-list {
+            padding: 2rem 0;
+        }
+        .dashboard-report-item {
+            display: block;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-decoration: none;
+
+            .dashboard-report-item-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding-bottom: 3rem;
+                .dashboard-report-item-img {
+                    width: 4rem;
+                }
+                .dashboard-report-item-status {
+                    padding: 0.2rem 0.8rem;
+                    border-radius: 2rem;
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    font-weight: 500;
+                    font-size: 1.2rem;
+                    background-color: $success;
+                    color: $success-contrast;
+                }
+            }
+            .dashboard-report-item-count {
+                font-size: 2.5rem;
+                font-weight: 600;
+                color: black;
+            }
+            .dashboard-report-item-name {
+                font-size: 1.8rem;
+                font-weight: 500;
+                color: rgba(0, 0, 0, 0.7);
+            }
+        }
+    }
+
+    .dashboard-gateway {
+        padding: 2rem 4rem;
+        border-radius: 1rem;
+        background-color: white;
+
+        .dashboard-gateway-title {
+            font-weight: 600;
+        }
+
+        .dashboard-gateway-list {
+            padding: 2rem 0;
+        }
+        .dashboard-gateway-item {
+            text-decoration: none;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 0 solid #e2e8f0;
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+        }
+        .dashboard-gateway-item-img {
+            width: 4rem;
+            margin-bottom: 2rem;
+        }
+        .dashboard-gateway-item-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: black;
+        }
+        .dashboard-gateway-item-type {
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.7);
+        }
+    }
+}
+
+.dashboard-right {
+    padding: 2rem 2rem;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+
+    .dashboard-right-top {
+        margin-bottom: 4rem;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .dashboard-right-title {
+            font-weight: 600;
+            font-size: 1.6rem;
+        }
+
+        .change-notify-btn-group {
+            .change-notify-btn {
+                padding: 0.8rem 1.2rem;
+                border-radius: 0.4rem;
+                border: 1px solid rgba(203, 213, 224);
+                background-color: inherit;
+                margin-left: 0.4rem;
+                .change-notify-icon {
+                    color: rgba(74, 85, 104);
+                    font-size: 1.2rem;
+                    transform: translateY(10%);
+                    font-weight: 600;
+                }
+            }
+
+            .change-notify-btn.change-notify-btn-active {
+                border: 2px $primary solid;
+            }
+        }
+    }
+
+    .dashboard-right-content {
+        .notify-card {
+            padding: 2rem;
+            background-color: white;
+            margin-bottom: 4rem;
+            border-radius: 1rem;
+
+            .notify-card-title {
+                font-weight: 600;
+                font-size: 1.4rem;
+            }
+            .notify-card-date-ago {
+                color: rgba(0, 0, 0, 0.4);
+                font-size: 1.4rem;
+            }
+            .notify-card-description {
+                color: rgba(0, 0, 0, 0.4);
+                font-size: 1.4rem;
+            }
+            .notify-card-description-list {
+                padding-left: 2rem;
+                .notify-card-description-item {
+                    color: rgba(0, 0, 0, 0.4);
+                    font-size: 1.4rem;
+                }
+            }
+            .notify-card-link {
+                .notify-card-img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.payment-gateway-list {
+    overflow-x: hidden;
+    .payment-gateway-top {
+        margin: 2rem 0;
+        .payment-gateway-title {
+            font-weight: 700;
+            font-size: 1.6rem;
+        }
+        .payment-gateway-add-btn {
+            padding: 0.6rem 1rem;
+            font-size: 1.4rem;
+            color: $white;
+        }
+    }
+
+    .payment-gateway-filter {
+        position: relative;
+        border: 1px solid #ccc;
+        border-radius: 0.4rem;
+        margin-bottom: 2rem;
+
+        .payment-gateway-filter-search-input {
+            background-color: $white;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            padding: 1rem 2.4rem;
+            font-size: 1.4rem;
+        }
+        .payment-gateway-filter-search-icon {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            margin-left: 1rem;
+            transform: translateY(-50%);
+
+            font-size: 1.2rem;
+            color: rgba(0, 0, 0, 0.4);
+            font-weight: 600;
+        }
+    }
+    .payment-gateway-table-wrapper {
+        overflow-x: scroll;
+        .payment-gateway-table {
+            margin-bottom: 2rem;
+            th {
+                font-size: 1.4rem;
+                text-align: left;
+                &:last-child {
+                    text-align: center;
+                }
+
+                .table-sort-icon {
+                    margin-left: 0.5rem;
+                    color: $dark;
+                    opacity: 0.3;
+                    cursor: pointer;
+                }
+
+                .table-sort-icon.table-sort-icon-active {
+                    opacity: 1;
+                }
+            }
+            td {
+                font-size: 1.2rem;
+                text-align: left;
+            }
+            td.payment-gateway-table-cell-action {
+                max-width: 80rem;
+                .payment-gateway-table-action {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+
+                    flex-wrap: wrap;
+                    .payment-gateway-table-action-btn {
+                        width: 12rem;
+                        font-size: 1.2rem;
+                        .payment-gateway-table-action-btn-icon {
+                            margin-right: 0.5rem;
+                        }
+                    }
+                }
+                @include media-breakpoint-down(lg) {
+                    max-width: 40rem;
+                }
+            }
+        }
+    }
+}
+
+.add-payment-gateway {
+    .add-payment-gateway-form-wrapper {
+        margin: 2rem 0;
+        background-color: $white;
+
+        .add-payment-gateway-form-title {
+            font-weight: 700;
+            font-size: 1.6rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 2rem;
+        }
+
+        .add-payment-gateway-form {
+            padding: 1rem 2rem;
+            font-size: 1.4rem;
+            .add-payment-gateway-form-input-group {
+                .add-payment-gateway-form-input-label {
+                    font-size: 1.4rem;
+                }
+
+                .add-payment-gateway-form-input {
+                    border: 1px solid #e2e8f0;
+                    border-radius: 0.4rem;
+                    margin-bottom: 2rem;
+                    background-color: $white;
+                    padding: 0;
+                    width: 100%;
+                    height: 100%;
+                    padding: 1rem 2.4rem;
+                    font-size: 1.4rem;
+                }
+
+                .add-payment-gateway-form-input:disabled {
+                    background-color: #e9ecef;
+                }
+
+                .add-payment-gateway-form-input:read-only {
+                    background-color: #e9ecef;
+                }
+            }
+
+            .add-payment-gateway-form-submit-btn {
+                padding: 0.6rem 1rem;
+                font-size: 1.4rem;
+                width: 100%;
+                color: $white;
+            }
+        }
+    }
+}
+
+.history {
+    overflow-x: hidden;
+    .history-top {
+        margin: 2rem 0;
+        .history-title {
+            font-weight: 700;
+            font-size: 1.6rem;
+        }
+    }
+
+    .history-filter {
+        position: relative;
+        border: 1px solid #ccc;
+        border-radius: 0.4rem;
+        margin-bottom: 2rem;
+
+        .history-filter-search-input {
+            background-color: $white;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            padding: 1rem 2.4rem;
+            font-size: 1.4rem;
+        }
+        .history-filter-search-icon {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            margin-left: 1rem;
+            transform: translateY(-50%);
+
+            font-size: 1.2rem;
+            color: rgba(0, 0, 0, 0.4);
+            font-weight: 600;
+        }
+    }
+    .history-table-wrapper {
+        overflow-x: scroll;
+        .history-table {
+            margin-bottom: 2rem;
+            th {
+                font-size: 1.4rem;
+                text-align: left;
+                &:last-child {
+                    // text-align: center;
+                    font-weight: 700;
+                }
+
+                .table-sort-icon {
+                    margin-left: 0.5rem;
+                    color: $dark;
+                    opacity: 0.3;
+                    cursor: pointer;
+                }
+
+                .table-sort-icon.table-sort-icon-active {
+                    opacity: 1;
+                }
+            }
+            td {
+                font-size: 1.2rem;
+                text-align: left;
+                .history-table-action-btn {
+                    font-size: 1.2rem;
+                    .history-table-action-btn-icon {
+                        margin-right: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.transfer-money {
+    .transfer-money-form-wrapper {
+        margin: 2rem 0;
+        background-color: $white;
+
+        .transfer-money-form-title {
+            font-weight: 700;
+            font-size: 1.6rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 2rem;
+        }
+
+        .transfer-money-form {
+            padding: 1rem 2rem;
+            font-size: 1.4rem;
+            .transfer-money-form-input-group {
+                .transfer-money-form-input-label {
+                    font-size: 1.4rem;
+                }
+
+                .transfer-money-form-input {
+                    border: 1px solid #e2e8f0;
+                    border-radius: 0.4rem;
+                    margin-bottom: 2rem;
+                    background-color: $white;
+                    padding: 0;
+                    width: 100%;
+                    height: 100%;
+                    padding: 1rem 2.4rem;
+                    font-size: 1.4rem;
+                }
+            }
+
+            .transfer-money-form-submit-btn {
+                padding: 0.6rem 1rem;
+                font-size: 1.4rem;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.upgrade-account {
+    position: relative;
+    .user-info-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $white;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: 1px rgba(0, 0, 0, 0.2);
+
+        .user-name {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .user-scoint-wrapper {
+            display: flex;
+            align-items: center;
+            .user-scoint-left {
+                margin-right: 1rem;
+                .user-scoint-icon {
+                    font-size: 2.5rem;
+                    color: $purple;
+                }
+            }
+            .user-scoint-right {
+                display: flex;
+                flex-direction: column;
+                .user-scoint-value {
+                    font-size: 1.6rem;
+                    font-weight: 700;
+                }
+                .user-scoint-description {
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }
+
+    .upgrade-account-active-btn {
+        background-color: rgb(238, 236, 254);
+        color: #28c76f;
+        padding: 0.4rem 0.6rem;
+        border-radius: 0.6rem;
+        font-weight: 700;
+        font-size: 0.8rem;
+        margin: 0.2rem 0.1rem;
+    }
+    .upgrade-account-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .upgrade-account-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 2.4rem;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 1rem;
+        }
+        .upgrade-account-introduction {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            line-height: 2rem;
+        }
+
+        .upgrade-account-topup-btn {
+            padding: 1rem 2rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: $white;
+        }
+    }
+    .upgrade-account-package-list {
+        padding: 2rem;
+        .upgrade-account-package-item {
+            background-color: $white;
+            padding: 2rem 2rem;
+            border-radius: 1rem;
+            .upgrade-account-package-header {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .upgrade-account-package-name {
+                    margin: 0 0.4rem;
+                }
+            }
+            .upgrade-account-package-price {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .upgrade-account-package-price-value {
+                    font-size: 3rem;
+                    font-weight: 600;
+                    margin: 0 0.2rem;
+                }
+                .upgrade-account-package-price-unit {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    color: rgba(0, 0, 0, 0.7);
+                    margin: 0 0.2rem;
+                }
+                .upgrade-account-package-price-month {
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                    margin: 0 0.2rem;
+                }
+            }
+            .upgrade-account-package-payment-gateway {
+                padding: 1rem 1rem;
+                .upgrade-account-package-payment-gateway-title {
+                    font-size: 1.6rem;
+                    text-align: center;
+                }
+                .upgrade-account-package-payment-gateway-list {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+                }
+            }
+            .upgrade-account-package-description {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 1rem 1rem;
+                .upgrade-account-package-description-item {
+                    font-size: 1.4rem;
+                    line-height: 2rem;
+                }
+            }
+            .upgrade-account-package-usage-limit {
+                padding: 1rem 1rem;
+
+                .upgrade-account-package-form {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    .upgrade-account-package-form-group {
+                        margin-bottom: 2rem;
+                        .upgrade-account-package-form-label {
+                            text-align: center;
+                            margin-bottom: 0.4rem;
+                        }
+                        .upgrade-account-package-form-input {
+                            margin-bottom: 0.4rem;
+                            font-size: 1.4rem;
+                        }
+                    }
+
+                    .upgrade-account-package-form-submit-btn {
+                        padding: 0.8rem 1rem;
+                        margin: 2rem;
+                        font-size: 1.4rem;
+                        font-weight: 600;
+                        color: $white;
+                    }
+                }
+            }
+        }
+
+        @include media-breakpoint-up(xxl) {
+            padding: 8rem;
+
+            .upgrade-account-package-item {
+                background-color: $white;
+                padding: 2rem 4rem;
+            }
+        }
+    }
+}
+
+.account {
+    // .account-header {
+    // }
+
+    // .account-content {
+    // }
+
+    .account-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+
+    .account-card {
+        background-color: $white;
+        border-radius: 4px;
+        border-color: transparent;
+        margin: 4rem 1rem;
+
+        .account-card-header {
+            padding: 2rem;
+            background-color: inherit;
+            border-bottom-color: rgba(237, 242, 247);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .account-card-header-left {
+                .account-card-header-title {
+                    font-size: 1.8rem;
+                    color: $text-color;
+                    font-weight: 600;
+                    margin: 0;
+                }
+            }
+            .account-card-header-right {
+                font-size: 1.6rem;
+            }
+        }
+        .account-card-body {
+            padding: 2rem;
+
+            .account-card-form-group {
+                margin-bottom: 2rem;
+                padding: 0;
+                .account-card-form-label {
+                    font-size: 1.6rem;
+                    margin-bottom: 1rem;
+                }
+                .account-card-form-input {
+                    font-size: 1.6rem;
+                    color: rgb(45, 55, 72);
+                    padding: 0.8rem 1.2rem;
+                    margin-bottom: 1rem;
+                    background-color: white;
+
+                    &:disabled {
+                        background-color: rgba(247, 250, 252);
+                    }
+
+                    &:read-only {
+                        background-color: rgba(247, 250, 252);
+                    }
+                }
+
+                .account-card-form-input-group {
+                    .account-card-form-input {
+                        margin-bottom: 0;
+                    }
+                    .account-card-form-input-append-btn {
+                        font-size: 1.6rem;
+                        padding: 0.8rem 1.2rem;
+                        color: $white;
+                        background-color: $primary;
+                    }
+                }
+            }
+
+            .account-card-form-check-group {
+                margin: 0;
+                margin-bottom: 1rem;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 0;
+
+                .account-card-form-check-input {
+                    font-size: 1.6rem;
+                    margin: 0;
+                    margin-right: 1rem;
+                    cursor: pointer;
+                }
+                .account-card-form-check-label {
+                    font-size: 1.6rem;
+                    color: rgb(45, 55, 72);
+                    margin: 0;
+                }
+            }
+
+            .account-card-body-footer {
+                padding: 1rem 0;
+                .account-card-form-submit-btn {
+                    padding: 1rem 2.4rem;
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                    color: $white;
+                }
+            }
+        }
+
+        .account-card-body {
+            .account-activity-log {
+                .account-activity-log-filter {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+
+                    .account-activity-log-filter-group {
+                        position: relative;
+                        border: 1px solid #ccc;
+                        border-radius: 0.4rem;
+                        margin-bottom: 2rem;
+
+                        .account-activity-log-filter-search-input {
+                            background-color: $white;
+                            padding: 0;
+                            width: 100%;
+                            height: 100%;
+                            border: none;
+                            padding: 1rem 2.4rem;
+                            font-size: 1.4rem;
+                        }
+                        .account-activity-log-filter-search-icon {
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            margin-left: 1rem;
+                            transform: translateY(-50%);
+
+                            font-size: 1.2rem;
+                            color: rgba(0, 0, 0, 0.4);
+                            font-weight: 600;
+                        }
+                    }
+                }
+                .account-activity-log-table-wrapper {
+                    overflow-x: scroll;
+                    background-color: $white;
+
+                    .account-activity-log-table {
+                        margin: 0;
+                        background-color: $white;
+                        th {
+                            font-size: 1.6rem;
+                            text-align: left;
+                            &:last-child {
+                                text-align: center;
+                            }
+
+                            .table-sort-icon {
+                                margin-left: 0.5rem;
+                                color: $dark;
+                                opacity: 0.3;
+                                cursor: pointer;
+                            }
+
+                            .table-sort-icon.table-sort-icon-active {
+                                opacity: 1;
+                            }
+                        }
+
+                        tr {
+                            background: $white;
+                            border-radius: 4px;
+                            font-size: 1.6rem;
+                            padding: 2rem 0;
+
+                            td {
+                                font-size: 1.6rem;
+                                text-align: left;
+                                &:first-child {
+                                    text-align: center;
+                                }
+                                &:last-child {
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .account-card-menu {
+        .account-card-menu-header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            .account-card-menu-header-img-wrapper {
+                width: 3rem;
+                margin-right: 2rem;
+                .account-card-menu-header-img {
+                    height: 100%;
+                    object-fit: cover;
+                    width: 100%;
+                }
+            }
+            .account-card-menu-info {
+                .account-card-menu-info-description {
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .account-card-menu-body {
+            display: flex;
+            flex-direction: column;
+
+            .account-card-menu-body-link {
+                padding: 0.8rem 0rem;
+                font-size: 1.6rem;
+                text-decoration: none;
+                color: inherit;
+                .account-card-menu-body-link-icon {
+                    margin-right: 1rem;
+                }
+            }
+
+            .account-card-menu-body-link.account-card-menu-body-link-active {
+                font-weight: 600;
+                color: $primary;
+            }
+        }
+    }
+
+    .account-access-token-header {
+        border-bottom: 1px solid #ccc;
+        .account-access-token-title {
+            width: 100%;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 0;
+            padding: 1rem;
+        }
+    }
+    .account-access-token-body {
+        padding: 2rem 0;
+        .account-access-token-body-item {
+            font-size: 1.6rem;
+            padding: 0 2rem;
+        }
+    }
+
+    .change-password-form {
+        padding: 1rem 2rem;
+        font-size: 1.4rem;
+        .change-password-form-input-group {
+            .change-password-form-input-label {
+                font-size: 1.4rem;
+                font-weight: 600;
+            }
+
+            .change-password-form-input {
+                border: 1px solid #e2e8f0;
+                border-radius: 0.4rem;
+                margin-bottom: 2rem;
+                background-color: $white;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                padding: 1rem 2.4rem;
+                font-size: 1.4rem;
+            }
+
+            .change-password-form-input:disabled {
+                background-color: #e9ecef;
+            }
+
+            .change-password-form-input:read-only {
+                background-color: #e9ecef;
+            }
+        }
+
+        .change-password-form-submit-btn {
+            padding: 0.6rem 1rem;
+            font-size: 1.4rem;
+            width: 100%;
+            color: $white;
+        }
+    }
+}
+
+.scoint-section {
+    background-color: $white;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+
+    .scoint-tabs {
+        border: none;
+
+        .scoint-tab-item {
+            margin-right: 1rem;
+            .scoint-tab-link {
+                width: 100%;
+                font-size: 1.8rem;
+                color: #ccc;
+                font-weight: 700;
+                position: relative;
+
+                &::after {
+                    content: "";
+                    width: 100%;
+                    height: 0.3rem;
+                    background-color: #ccc;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+
+                &.scoint-tab-link-active {
+                    color: $primary;
+
+                    &::after {
+                        background-color: #2b6777;
+                    }
+                }
+            }
+        }
+    }
+
+    .scoint-intro {
+        margin-top: 4rem;
+        .scoint-intro-item {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+    }
+
+    .scoint-tab-content {
+        .scoint-tab-desposit {
+            .scoint-tab-desposit-title {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: $primary;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+            .bank {
+                height: 100%;
+                .bank-info {
+                    padding: 1rem;
+                    background-color: rgb(245, 247, 250);
+                    height: 100%;
+
+                    .bank-info-label {
+                        font-size: 1.6rem;
+                    }
+                    .bank-info-content {
+                        font-size: 1.6rem;
+                        font-weight: 600;
+                        &.bank-info-content-active {
+                            color: $blue;
+                        }
+                    }
+
+                    .bank-transfer-content {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        padding: 2rem 0;
+
+                        .bank-transfer-content-title {
+                            width: 100%;
+                            color: $blue;
+                            text-align: left;
+                            font-size: 1.8rem;
+                            font-weight: 700;
+                        }
+                        .bank-transfer-content-message {
+                            color: $danger;
+                            text-align: center;
+                            font-size: 2rem;
+                            font-weight: 800;
+                        }
+                        .bank-transfer-content-copy-btn {
+                            color: $blue;
+                            background-color: transparent;
+                            border: none;
+                            font-size: 1.6rem;
+                            font-weight: 800;
+                        }
+                    }
+                }
+            }
+
+            .qr-code {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .qr-code-wrapper {
+                    width: 60%;
+                    display: flex;
+                    justify-content: center;
+                    .qr-code-img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    .scoint-alert-danger {
+        font-size: 1.6rem;
+        font-weight: 600;
+        padding: 1rem 2rem;
+    }
+
+    .scoint-desposit-helper {
+        width: 100%;
+        .scoint-desposit-helpr-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: $primary;
+        }
+        .scoint-desposit-helper-bank-transfer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .scoint-desposit-helper-bank-transfer-content-message {
+                background-color: rgb(233, 236, 239);
+                margin-right: 2rem;
+                color: rgb(73, 84, 115);
+                width: 100%;
+                padding: 1rem 2rem;
+                font-size: 2rem;
+                font-weight: 700;
+            }
+            .scoint-desposit-helper-bank-transfer-content-copy-btn {
+                color: $white;
+                background-color: $primary;
+                padding: 1rem 2rem;
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+.ecaptcha-history-list {
+    overflow-x: hidden;
+    .ecaptcha-history-top {
+        margin: 2rem 0;
+        .ecaptcha-history-title {
+            font-weight: 700;
+            font-size: 2rem;
+        }
+        .ecaptcha-history-add-btn {
+            padding: 0.6rem 1rem;
+            font-size: 1.4rem;
+            color: $white;
+        }
+    }
+
+    .ecaptcha-history-filter {
+        position: relative;
+        border: 1px solid #ccc;
+        border-radius: 0.4rem;
+        margin-bottom: 2rem;
+
+        .ecaptcha-history-filter-search-input {
+            background-color: $white;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            padding: 1rem 2.4rem;
+            font-size: 1.4rem;
+        }
+        .ecaptcha-history-filter-search-icon {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            margin-left: 1rem;
+            transform: translateY(-50%);
+
+            font-size: 1.2rem;
+            color: rgba(0, 0, 0, 0.4);
+            font-weight: 600;
+        }
+    }
+    .ecaptcha-history-table-wrapper {
+        overflow-x: scroll;
+        .ecaptcha-history-table {
+            margin-bottom: 2rem;
+            border-radius: 1rem;
+
+            tr {
+                min-height: 8rem;
+                padding: 1rem;
+
+                th {
+                    font-size: 1.6rem;
+                    text-align: left;
+                    &:last-child {
+                        text-align: center;
+                    }
+
+                    .table-sort-icon {
+                        margin-left: 0.5rem;
+                        color: $dark;
+                        opacity: 0.3;
+                        cursor: pointer;
+                    }
+
+                    .table-sort-icon.table-sort-icon-active {
+                        opacity: 1;
+                    }
+                }
+                td {
+                    font-size: 1.4rem;
+                    text-align: left;
+                    .ecaptcha-history-table-action-btn {
+                        font-size: 1.2rem;
+                        .ecaptcha-history-table-action-btn-icon {
+                            margin-right: 0.5rem;
+                        }
+                    }
+
+                    &:last-child {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ecaptcha-card {
+    background-color: $white;
+    border-radius: 4px;
+    border-color: transparent;
+    margin: 4rem 1rem;
+
+    .ecaptcha-card-header {
+        padding: 2rem;
+        background-color: inherit;
+        border-bottom-color: rgba(237, 242, 247);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .ecaptcha-card-header-left {
+            .ecaptcha-card-header-title {
+                font-size: 1.8rem;
+                color: $text-color;
+                font-weight: 600;
+                margin: 0;
+            }
+        }
+        .ecaptcha-card-header-right {
+            font-size: 1.6rem;
+        }
+    }
+    .ecaptcha-card-body {
+        padding: 2rem;
+
+        .ecaptcha-card-form-group {
+            margin-bottom: 2rem;
+            padding: 0;
+            .ecaptcha-card-form-label {
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+            }
+            .ecaptcha-card-form-input {
+                font-size: 1.6rem;
+                background-color: rgba(247, 250, 252);
+                color: rgb(45, 55, 72);
+                padding: 0.8rem 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .ecaptcha-card-form-input-group {
+                .ecaptcha-card-form-input {
+                    margin-bottom: 0;
+                }
+                .ecaptcha-card-form-input-append-btn {
+                    font-size: 1.6rem;
+                    padding: 0.8rem 1.2rem;
+                    color: $white;
+                    background-color: $primary;
+                }
+            }
+        }
+
+        .ecaptcha-card-body-footer {
+            padding: 1rem 0;
+            .ecaptcha-card-form-submit-btn {
+                padding: 1rem 2.4rem;
+                font-size: 1.6rem;
+                font-weight: 600;
+                color: $white;
+            }
+        }
+    }
+    .ecaptcha-access-token-header {
+        border-bottom: 1px solid #ccc;
+        .ecaptcha-access-token-title {
+            width: 100%;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 0;
+            padding: 1rem;
+        }
+    }
+    .ecaptcha-access-token-body {
+        padding: 2rem 0;
+        .ecaptcha-access-token-body-item {
+            font-size: 1.6rem;
+            padding: 0 2rem;
+        }
+    }
+}
+
+.api-document-view-wrapper {
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    .api-document-view {
+        font-size: 1.6rem;
+        text-align: center;
+        min-height: 10rem;
+    }
+}
+
+.api-tool-card {
+    background-color: $white;
+    border-radius: 4px;
+    border-color: transparent;
+    margin: 4rem 1rem;
+
+    .api-tool-card-header {
+        padding: 2rem;
+        background-color: inherit;
+        border-bottom-color: rgba(237, 242, 247);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .api-tool-card-header-left {
+            .api-tool-card-header-title {
+                font-size: 1.8rem;
+                color: $text-color;
+                font-weight: 600;
+                margin: 0;
+            }
+        }
+        .api-tool-card-header-right {
+            font-size: 1.6rem;
+        }
+    }
+    .api-tool-card-body {
+        padding: 2rem;
+
+        .api-tool-card-form {
+            margin-bottom: 2rem;
+            padding: 0;
+
+            .api-tool-card-form-group {
+                margin-bottom: 2rem;
+                .api-tool-card-form-label {
+                    font-size: 1.6rem;
+                    margin-bottom: 1rem;
+                }
+                .api-tool-card-form-input {
+                    font-size: 1.6rem;
+                    background-color: rgba(247, 250, 252);
+                    color: rgb(45, 55, 72);
+                    padding: 0.8rem 1.2rem;
+                    margin-bottom: 1rem;
+                }
+
+                .api-tool-card-form-input-group {
+                    display: flex;
+                    flex-direction: row;
+
+                    .api-tool-card-form-input-label {
+                        font-size: 1.4rem;
+                    }
+
+                    .api-tool-card-form-input {
+                        border: 1px solid #e2e8f0;
+                        border-radius: 0.4rem;
+                        // margin-bottom: 2rem;
+                        margin: 0;
+                        background-color: $white;
+                        padding: 0;
+                        // width: 100%;
+                        height: 100%;
+                        padding: 1rem 2.4rem;
+                        font-size: 1.4rem;
+                    }
+
+                    .api-tool-card-form-input:disabled {
+                        background-color: #e9ecef;
+                    }
+
+                    .api-tool-card-form-input:read-only {
+                        background-color: #e9ecef;
+                    }
+                }
+            }
+
+            .api-tool-card-form-submit-btn {
+                width: 100%;
+                font-size: 1.6rem;
+                padding: 1rem;
+            }
+        }
+    }
+
+    .create-bank-qrcode-right {
+        .create-bank-qrcode-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            .create-bank-qrcode-img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.integration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 0;
+
+    .integration-list {
+        width: 100%;
+        background-color: $white;
+        padding: 2rem 4rem;
+        border-radius: 1rem;
+
+        .integration-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .integration-item-icon {
+                font-size: 3rem;
+                color: $primary;
+                font-weight: 700;
+                margin: 2rem 0;
+            }
+            .integration-item-name {
+                font-size: 2rem;
+                font-weight: 700;
+            }
+            .integration-item-intro {
+                margin-bottom: 2rem;
+                color: $text-color;
+                font-size: 1.4rem;
+            }
+            .integration-item-description {
+                font-size: 1.4rem;
+                color: rgba(113, 128, 150);
+                text-align: center;
+            }
+            .integration-item-price {
+                margin-bottom: 2rem;
+                .integration-item-price-value {
+                    font-size: 3rem;
+                    font-weight: 700;
+                }
+                .integration-item-price-unit {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: #ccc;
+                }
+            }
+            .integration-item-purchase-btn {
+                background-color: $primary;
+                color: $white;
+                padding: 1rem 2rem;
+                border-radius: 2rem;
+                font-size: 1.4rem;
+            }
+        }
+    }
+}

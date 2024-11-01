@@ -1,0 +1,35 @@
+
+.profile{
+    .alert {
+        border-radius: .375rem;
+        padding: 16px;
+        background-color: rgba(145, 199, 20, 1);
+        color: rgba(255, 255, 255, 1);
+        a{
+            color: rgba(255, 255, 255, 1);
+            text-decoration: none;
+        }
+    }
+    .main {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: baseline;
+        margin-top: 24px;
+        gap: 10px;
+
+        .p-5 {
+            padding: 20px !important;
+        }
+
+        .block {
+            max-width: 591px;
+            width: 100%;
+        }
+
+        #btnTransfer {
+            background-color: #189761;
+            font-weight: 500;
+        }
+    }
+}

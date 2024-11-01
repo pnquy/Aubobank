@@ -1,0 +1,221 @@
+// Màu sắc và biến toàn cục
+$background-color-light: #f1f5f8;
+$background-color-white: #ffffff;
+$border-color: #ccc;
+$background-color-light-grey: #f5f5f5;
+$font-color-green: #2eae03;
+$font-color-d14: #d14;
+$font-color-blue: #099;
+$font-color-dark-blue: #069;
+$font-color-gray: gray;
+$font-color-brown: #905;
+$table-header-bg: #f8f8f8;
+
+$transition-time: 0.5s;
+$background-active: #f0f0f0;
+
+// Mixins
+@mixin slide-transition($property) {
+    transition: $property $transition-time ease-in-out;
+}
+
+// Tiêu đề API
+.api-title {
+    font-size: 18px;
+    margin: auto;
+    cursor: pointer;
+    text-align: left;
+    font-weight: bold;
+}
+.api-url {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    .url-part {
+        font-family: monospace;
+        /* Đảm bảo kiểu chữ giống như trong input */
+    }
+
+    .url-base {
+        color: black;
+        /* Màu cho https:// */
+    }
+
+    .url-path {
+        color: #998;
+        /* Màu cho phần còn lại của URL */
+    }
+}
+
+// Khung API
+.API_document {
+    height: 100%;
+    background-color: $background-color-light;
+}
+
+.box {
+    background-color: $background-color-white;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.04);
+
+    // Tiêu đề khung
+    #btn {
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 18px;
+        margin: auto;
+        text-align: left;
+
+        &.active {
+            background-color: $background-active;
+            color: $font-color-green;
+        }
+    }
+
+    // Các mục trong khung
+    .API-items {
+        padding: 16px;
+        border: 1px solid rgba(237, 242, 247, 1);
+        h1{
+            display: flex;
+            width: 100%;
+        }
+    }
+}
+.profile-member{
+    h1{
+        margin: 0px;
+    }
+}
+// Liên kết
+.link {
+    display: flex;
+    border: 1px solid $border-color;
+    padding: 9px;
+    border-radius: 5px;
+    background-color: $background-color-light-grey;
+
+    p {
+        margin: 0;
+    }
+}
+
+// Chuyển tiếp ẩn/hiển thị
+.hid {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.show {
+    max-height: 3000px; // Thay đổi giá trị này nếu cần
+}
+
+.show {
+    max-height: 3000px; // Điều chỉnh theo nhu cầu
+    @include slide-transition(max-height);
+}
+.api-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    padding: 0 15px;
+}
+.open {
+    max-height: 100%;
+    /* Thay đổi giá trị này nếu cần */
+    padding: 15px;
+}
+// Table
+.table-api {
+    margin-top: 24px;
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+        font-weight: 600;
+        background-color: $table-header-bg;
+        padding: 10px;
+        text-align: left;
+    }
+
+    td {
+        padding: 10px;
+    }
+}
+
+// Phản hồi
+.api-response {
+    margin-top: 24px;
+
+    h2 {
+        font-size: 14px;
+        color: #68644a;
+        margin-top: 16px;
+    }
+
+    pre {
+        background-color: #f8f8f8;
+        border: 1px solid $border-color;
+        border-radius: 3px;
+        padding: 10px;
+        overflow-x: auto;
+    }
+}
+
+// Định dạng cú pháp
+.string {
+    color: $font-color-d14;
+}
+
+.number {
+    color: $font-color-blue;
+}
+
+.boolean {
+    color: $font-color-dark-blue;
+}
+
+.null {
+    color: $font-color-gray;
+}
+
+.key {
+    color: $font-color-brown;
+}
+
+// Nội dung API
+
+
+.api-subtitle {
+    font-size: 14px;
+    color: #4A5568;
+    margin-top: 16px;
+}
+
+.api-url {
+    display: flex;
+    flex-direction: row;
+
+    .api-url-base {
+        font-family: monospace;
+        margin: 0;
+    }
+
+    .api-url-path {
+        margin: 0;
+        color: #998;
+    }
+}
+
+.api-table {
+    margin-top: 24px;
+}
+
+.api-response {
+    margin-top: 24px;
+}

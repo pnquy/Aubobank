@@ -1,0 +1,15 @@
+.fs-24{
+    font-size: 24px;
+}
+.fs-16{
+    font-size: 16px;
+}
+.white{
+    color: white;
+}
+.none{
+    display: none!important;
+}
+.color-main{
+    color: rgba(18, 147, 71, 1)!important;
+}

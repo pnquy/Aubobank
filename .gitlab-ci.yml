@@ -1,0 +1,13 @@
+stages:
+    - deploy_production
+
+deploy_production:
+    stage: deploy_production
+    script:
+        - pwd
+        - rsync -aurv ../autobank/ root@metechfe:/www/wwwroot/autobank.metechsoftware.com/ --exclude="vendor"
+        - ssh -t root@metechfe 'cd /www/wwwroot/autobank.metechsoftware.com/ && cp .env.production .env && chmod 777 -R storage && chmod 777 -R bootstrap'
+    only:
+        - master
+    environment:
+        name: staging
